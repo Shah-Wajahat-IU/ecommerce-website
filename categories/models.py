@@ -1,7 +1,6 @@
 
-from tabnanny import verbose
 from django.db import models
-from django.forms import CharField
+from django.urls import reverse
 
 # Create your models here.
 class Categories(models.Model):
@@ -13,6 +12,11 @@ class Categories(models.Model):
     class Meta:
         verbose_name="category"
         verbose_name_plural="categories"
+
+
+    def get_url(self):
+       
+        return reverse('product_by_category',args=[self.slug])
 
     def __str__(self):
         return self.category_name
